@@ -2,8 +2,10 @@
  * @format
  */
 
-import {AppRegistry} from 'react-native';
-import App from './App';
+import {AppRegistry, NativeModules} from 'react-native';
+import TaskList from './src/screens/TaskList';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+import 'react-native-gesture-handler';
+
+AppRegistry.registerComponent(appName, () => TaskList);
