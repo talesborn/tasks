@@ -1,4 +1,4 @@
-import {Alert, Platform} from "react-native";
+import {Alert} from "react-native";
 
 const server = 'http://10.25.24.163:3000'
 

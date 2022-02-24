@@ -17,8 +17,6 @@ import AddTask from "./AddTask";
 import axios from "axios";
 import {server, showError} from "../common";
 
-import {useDrawerStatus} from "@react-navigation/drawer";
-
 const initialState = {
     showDoneTasks: true,
     visibleTasks: [],
@@ -32,14 +30,23 @@ class TaskList extends Component {
         ...initialState
     }
 
+    constructor(props) {
+        super(props);
+        console.log('caiu no componentDidMount');
+        AsyncStorage.getItem('taskState').then(stateString=>{
+            const state = JSON.parse(stateString) || initialState;
+            console.log('setState');
+            this.setState({showDoneTasks: state.showDoneTasks}, this.filterTasks);
+            this.loadTasks();
+        });
+    }
+
     componentDidMount = async () => {
-        const stateString = await AsyncStorage.getItem('taskState');
-        const state = JSON.parse(stateString) || initialState;
-        this.setState({showDoneTasks: state.showDoneTasks}, this.filterTasks);
-        this.loadTasks();
+
     }
 
     loadTasks = async () => {
+        console.log('caiu no loadTask');
         try{
             const maxDate = moment().add({days:this.props.daysAhead}).format('YYYY-MM-DD 23:59:59');
             const res = await axios.get(`${server}/tasks?date=${maxDate}`);
@@ -86,7 +93,7 @@ class TaskList extends Component {
             await axios.post(`${server}/tasks`,{
                 desc:newTask.desc,
                 estimateAt: newTask.date
-            });
+            }).done(this.loadTasks);
 
             this.setState({showAddTask: false}, this.loadTasks);
         }catch (e){

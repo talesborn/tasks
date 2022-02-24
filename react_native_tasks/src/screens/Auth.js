@@ -10,8 +10,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const initialState = {
     name:'',
-    email: 'tales@ixcsoft.com.br',
-    password: '123456',
+    email: '',
+    password: '',
     confirmPassword:'',
     stageNew: false,
 };
@@ -84,6 +84,7 @@ class Auth extends Component{
                     <AuthInput icon='at' placeholder='E-mail'
                                value={this.state.email}
                                style={styles.input}
+                               autoCapitalize={'none'}
                                onChangeText={email=>this.setState({email})}/>
                     <AuthInput icon='lock' placeholder='Senha' value={this.state.password}
                                secureTextEntry={true}
