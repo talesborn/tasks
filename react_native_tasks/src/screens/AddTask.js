@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     header:{
         fontFamily:commonStyles.fontFamily,
         backgroundColor:commonStyles.colors.today,
-        color: commonStyles.colors.secundary,
+        color: commonStyles.colors.secondary,
         textAlign:'center',
         padding: 15,
         fontSize: 18

@@ -3,9 +3,9 @@
  */
 
 import {AppRegistry, NativeModules} from 'react-native';
-import TaskList from './src/screens/TaskList';
+import Navigator from './src/Navigator';
 import {name as appName} from './app.json';
 
 import 'react-native-gesture-handler';
 
-AppRegistry.registerComponent(appName, () => TaskList);
+AppRegistry.registerComponent(appName, () => Navigator);
